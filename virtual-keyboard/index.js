@@ -1,4 +1,5 @@
 //Begin
+//TODO ADD logic for Del, CapsLock
 import layout from './assets/js/languages.js';
 
 
@@ -74,6 +75,24 @@ activeshift() {
   });
 }
 
+activebackspace() {
+    if (this.cursorLocation === 0) {
+        return;
+    }
+
+    if (this.cursorLocation !== null) {
+        this.value = this.value.slice(0, this.cursorLocation - 1)
+            + this.value.slice(this.cursorLocation);
+        if (this.cursorLocation > 0) {
+            this.cursorLocation -= 1;
+        }
+    } else {
+        this.value = this.value.slice(0, -1);
+    }
+
+    this.displayupdate();
+}
+
 languagechange() {
     if (!!this.meta && !!this.altLeft) {
         if (this.language === 'eng') {
@@ -93,7 +112,7 @@ languagechange() {
     }
 }
 
-//TODO ADD logic for Del, CapsLock, Backspace
+
 
 keyboardInit() {
     const body = document.querySelector('body');
