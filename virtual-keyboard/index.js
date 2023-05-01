@@ -1,4 +1,6 @@
 //Begin
+import layout from './assets/js/languages.js';
+
 
 const body = document.querySelector('body');
 const notation = document.createElement('p');
