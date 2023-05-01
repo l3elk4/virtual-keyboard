@@ -381,8 +381,20 @@ keyboardInit() {
     });
 }
 
-
-
-
-
 }
+
+//Local storage
+
+let newkeyboard;
+
+if (localStorage.getItem('language')) {
+    newkeyboard = new Keyboard(layout, localStorage.getItem('language'));
+} else {
+    newkeyboard = new Keyboard(layout, 'eng');
+}
+
+newkeyboard.displayInit();
+newkeyboard.keyboardInit();
+
+
+
