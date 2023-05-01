@@ -1,6 +1,5 @@
 //Begin
-//TODO add pretify, 
-//fix html link
+//TODO add pretify, double check functionality
 import layout from './assets/js/languages.js';
 
 
