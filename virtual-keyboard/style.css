@@ -1,1 +1,12 @@
 /* Begin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #358b9c80;
+}
+.notation {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 36px;
+}
