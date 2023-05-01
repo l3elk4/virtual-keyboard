@@ -122,6 +122,14 @@ activeCapsLock() {
     }
 }
 
+activedel() {
+    if (this.cursorLocation !== null) {
+        this.value = this.value.slice(0, this.cursorLocation)
+            + this.value.slice(this.cursorLocation + 1);
+        this.displayupdate();
+    }
+}
+
 languagechange() {
     if (!!this.meta && !!this.altLeft) {
         if (this.language === 'eng') {
