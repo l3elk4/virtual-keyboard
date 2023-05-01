@@ -53,3 +53,28 @@ button {
     transition: border-radius .5s;
     
 }
+
+button:nth-child(14){
+    font-size: 18px;
+}
+
+button:active, .active {
+    background-color: #155f0b;
+    border-radius: 30px;
+}
+
+.backspace {
+    width: 5rem;
+}
+
+.tab, .del, .shiftleft, .shiftright {
+    width: 4rem;
+}
+
+.capslock {
+    width: 5rem;
+}
+
+.space {
+    width: 30.5rem;
+}

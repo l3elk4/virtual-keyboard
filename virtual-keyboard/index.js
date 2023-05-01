@@ -1,5 +1,6 @@
 //Begin
-//TODO ADD logic for Del
+//TODO add pretify, 
+//fix html link
 import layout from './assets/js/languages.js';
 
 
