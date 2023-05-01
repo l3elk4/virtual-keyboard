@@ -73,7 +73,27 @@ activeshift() {
       }
   });
 }
-//TODO ADD logic for language change, Del, CapsLock, Backspace
+
+languagechange() {
+    if (!!this.meta && !!this.altLeft) {
+        if (this.language === 'eng') {
+            this.language = 'deu';
+        } else {
+            this.language = 'eng';
+        }
+
+        localStorage.setItem('language', this.language);
+
+        const buttonbox = document.querySelector('.buttons-container');
+        buttonbox.childNodes.forEach((bttn) => {
+            if (bttn.innerText.length === 1) {
+                bttn.innerText = this.layout[bttn.name][this.language][0];
+            }
+        });
+    }
+}
+
+//TODO ADD logic for Del, CapsLock, Backspace
 
 keyboardInit() {
     const body = document.querySelector('body');
