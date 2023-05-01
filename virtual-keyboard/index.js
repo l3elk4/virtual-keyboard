@@ -1,5 +1,5 @@
 //Begin
-//TODO ADD logic for Del, CapsLock
+//TODO ADD logic for Del
 import layout from './assets/js/languages.js';
 
 
@@ -91,6 +91,35 @@ activebackspace() {
     }
 
     this.displayupdate();
+}
+
+
+activeCapsLock() {
+    this.capsLock = !this.capsLock;
+    const capsLock = document.querySelector('[name = "CapsLock"]');
+    const buttonbox = document.querySelector('.buttons-container');
+    const changeLetterUpperLower = (bttn, layout, lang) => {
+        const activeBtn = bttn;
+        if (activeBtn.innerHTML.length === 1 && layout[bttn.name][lang].length === 1) {
+            if (activeBtn.innerText === activeBtn.innerText.toLowerCase()) {
+                activeBtn.innerText = activeBtn.innerText.toUpperCase();
+            } else {
+                activeBtn.innerText = activeBtn.innerText.toLowerCase();
+            }
+        }
+    };
+
+    if (this.capsLock) {
+        capsLock.classList.add('active');
+        buttonbox.childNodes.forEach((bttn) => {
+            changeLetterUpperLower(bttn, this.layout, this.language);
+        });
+    } else {
+        capsLock.classList.remove('active');
+        buttonbox.childNodes.forEach((bttn) => {
+            changeLetterUpperLower(bttn, this.layout, this.language);
+        });
+    }
 }
 
 languagechange() {
