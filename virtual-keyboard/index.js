@@ -71,5 +71,240 @@ activeshift() {
       }
   });
 }
+//TODO ADD logic for language change, Del, CapsLock, Backspace
+
+keyboardInit() {
+    const body = document.querySelector('body');
+    const createIconHTML = (iconName) => `<i class="material-icons">${iconName}</i>`;
+
+    const buttonbox = document.createElement('div');
+    buttonbox.setAttribute('class', 'buttons-container');
+
+    Object.keys(this.layout).forEach((key) => {
+        const newbtn = document.createElement('button');
+        const value = this.layout[key][this.language][0];
+
+        newbtn.innerText = value;
+        newbtn.setAttribute('class', key.toLowerCase());
+        newbtn.setAttribute('name', key);
+
+        switch (value) {
+            
+            case 'Ctrl':
+                break;
+                case 'Alt':
+                    break;
+
+                    case 'fn':
+                        break;
+            case 'Cmd':
+                break;
+
+            case 'Shift':
+                newbtn.addEventListener('mousedown', () => {
+                    this.activeshift(true);
+                });
+
+                newbtn.addEventListener('mouseup', () => {
+                    this.activeshift(false);
+                });
+                break;
+
+                case 'Backspace':
+                    newbtn.addEventListener('click', () => {
+                    this.activebackspace();
+                });
+                break;
+
+            case 'Tab':
+                newbtn.addEventListener('click', () => {
+                    this.textadd('   ');
+                });
+                break;
+
+            case 'Caps Lock':
+                newbtn.addEventListener('click', () => {
+                    this.activeCapsLock();
+                });
+                break;
+
+            case 'Enter':
+                newbtn.addEventListener('click', () => {
+                    this.textadd('\n');
+                });
+                break;
+                case 'Del':
+                    newbtn.addEventListener('click', () => {
+                        this.activedel();
+                    });
+                    break;
+            case 'ArrowUp':
+                newbtn.innerHTML = createIconHTML('arrow_drop_up');
+                newbtn.addEventListener('click', () => {
+                    this.textadd('↑');
+                });
+                break;
+
+            case 'ArrowLeft':
+                newbtn.innerHTML = createIconHTML('arrow_left');
+                newbtn.addEventListener('click', () => {
+                    this.textadd('←');
+                });
+                break;
+
+            case 'ArrowDown':
+                newbtn.innerHTML = createIconHTML('arrow_drop_down');
+                newbtn.addEventListener('click', () => {
+                    this.textadd('↓');
+                });
+                break;
+
+            case 'ArrowRight':
+                newbtn.innerHTML = createIconHTML('arrow_right');
+                newbtn.addEventListener('click', () => {
+                    this.textadd('→');
+                });
+                break;
+
+            case 'Space':
+                newbtn.innerText = ' ';
+                newbtn.addEventListener('click', () => {
+                    this.textadd(' ');
+                });
+                break;
+
+            default:
+                newbtn.addEventListener('click', () => {
+                    this.textadd(newbtn.innerText);
+                });
+        }
+        buttonbox.appendChild(newbtn);
+    });
+
+    body.appendChild(buttonbox);
+
+    document.body.addEventListener('keydown', (event) => {
+        event.preventDefault();
+        const buttonCurrent = document.querySelector(`[name = "${event.code}"]`);
+
+        buttonCurrent.classList.add('active');
+
+        switch (buttonCurrent.name) {
+
+
+
+            case 'Backspace':
+                this.activebackspace();
+                break;
+
+
+            case 'Del':
+                    this.activedel();
+                    break;
+
+            case 'Tab':
+                this.textadd('   ');
+                break;
+            case 'ShiftLeft':
+                this.activeshift();
+                break;
+
+            case 'ShiftRight':
+                this.activeshift();
+                break;
+
+        
+
+            case 'CapsLock':
+                this.activeCapsLock();
+                break;
+
+            case 'Enter':
+                this.textadd('\n');
+                break;
+
+            case 'ArrowUp':
+                this.textadd('↑');
+                break;
+
+            case 'ArrowLeft':
+                this.textadd('←');
+                break;
+
+            case 'ArrowDown':
+                this.textadd('↓');
+                break;
+
+            case 'ArrowRight':
+                this.textadd('→');
+                break;
+
+            
+            case 'ControlLeft':
+                
+                break;
+
+            case 'AltLeft':
+                this.altLeft = true;
+                this.languagechange();
+                break;
+
+           
+
+            case 'MetaLeft':
+                this.meta = true;
+                this.languagechange();
+                break;
+                case 'Space':
+                    this.textadd(' ');
+                    break;
+
+            case 'MetaRight':
+                break;
+                case 'AltRight':
+                    break;
+
+            default:
+                this.textadd(buttonCurrent.innerText);
+        }
+    });
+
+    document.body.addEventListener('keyup', (event) => {
+        event.preventDefault();
+        const curBtn = document.querySelector(`[name = "${event.code}"]`);
+        curBtn.classList.remove('active');
+
+        switch (curBtn.name) {
+
+            case 'CapsLock':
+                this.activeCapsLock();
+                break;
+
+
+            case 'ShiftLeft':
+                this.activeshift();
+                break;
+
+            case 'ShiftRight':
+                this.activeshift();
+                break;
+            
+
+            case 'ControlLeft':
+                this.ctrl = false;
+                break;
+
+            case 'AltLeft':
+                this.altLeft = false;
+                break;
+
+            default:
+        }
+    });
+}
+
+
+
+
 
 }
